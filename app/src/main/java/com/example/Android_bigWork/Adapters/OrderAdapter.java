@@ -30,8 +30,6 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
  */
 public class OrderAdapter extends BaseAdapter implements StickyListHeadersAdapter {
     private static final String TAG = "my";
-    public static final int VIEW_TYPE_ITEM = 1;
-    public static final int VIEW_TYPE_EMPTY = 0;
     public int viewType;
     private LayoutInflater inflater;
     Context context;

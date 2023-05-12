@@ -13,9 +13,7 @@ public abstract class DishDatabase extends RoomDatabase {
     private static final String DB_NAME = "dish.db";
     private static DishDatabase INSTANCE;
 
-    /**
-     * 获取数据库实例
-     */
+    /** 获取数据库实例 */
     public static synchronized DishDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),

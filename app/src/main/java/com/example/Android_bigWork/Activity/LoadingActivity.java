@@ -44,7 +44,6 @@ public class LoadingActivity extends AppCompatActivity
         DishDatabase dishDatabase = DishDatabase.getDatabase(this);
         DishDao dishDao = dishDatabase.getDishDao();
         PersonDatabase personDatabase = PersonDatabase.getDatabase(this);
-        PersonDao personDao = personDatabase.getPersonDao();
         //检测数据库是否为空
         if (dishDao.getDishCount() == 0) {
             //初始化数据库

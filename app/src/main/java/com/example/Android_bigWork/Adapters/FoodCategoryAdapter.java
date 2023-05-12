@@ -76,7 +76,6 @@ public class FoodCategoryAdapter extends BaseAdapter {
                 break;
             }
         }
-//        Log.d("FoodCategoryAdapter", "updateCategorySelectionByCID: no such CID");
     }
 
     static class ViewHolder {

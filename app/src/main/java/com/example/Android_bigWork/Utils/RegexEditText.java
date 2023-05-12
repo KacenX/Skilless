@@ -84,24 +84,10 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
     }
 
     /**
-     * 是否有这个输入标记
-     */
-    public boolean hasInputType(int type) {
-        return (getInputType() & type) != 0;
-    }
-
-    /**
      * 添加一个输入标记
      */
     public void addInputType(int type) {
         setInputType(getInputType() | type);
-    }
-
-    /**
-     * 移除一个输入标记
-     */
-    public void removeInputType(int type) {
-        setInputType(getInputType() & ~type);
     }
 
     /**
@@ -146,13 +132,6 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
             newFilters[0] = filter;
         }
         super.setFilters(newFilters);
-    }
-
-    /**
-     * 清空筛选规则
-     */
-    public void clearFilters() {
-        super.setFilters(new InputFilter[0]);
     }
 
     /**

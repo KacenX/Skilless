@@ -30,15 +30,6 @@ public interface ResourcesAction {
         return getResources().getString(id, formatArgs);
     }
 
-    default Drawable getDrawable(@DrawableRes int id) {
-        return ContextCompat.getDrawable(getContext(), id);
-    }
-
-    @ColorInt
-    default int getColor(@ColorRes int id) {
-        return ContextCompat.getColor(getContext(), id);
-    }
-
     default <S> S getSystemService(@NonNull Class<S> serviceClass) {
         return ContextCompat.getSystemService(getContext(), serviceClass);
     }

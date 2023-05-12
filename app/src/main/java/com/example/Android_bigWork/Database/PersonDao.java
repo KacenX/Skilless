@@ -34,39 +34,23 @@ public interface PersonDao {
     @Query("SELECT * FROM person_table WHERE phoneNumber = :phoneNumber and password = :password ")
     Person checkLoginByPhoneNumber(long phoneNumber, String password);
 
-    /**
-     * 检测用户名是否存在
-     *
-     * @param username 用户名
-     */
+    /** 检测用户名是否存在 */
     @Query("SELECT * FROM person_table WHERE username = :username")
     Person checkUsername(String username);
 
-    /**
-     * 检测电话号码是否存在
-     *
-     * @param phoneNumber 电话号码
-     */
+    /** 检测电话号码是否存在 */
     @Query("SELECT * FROM person_table WHERE phoneNumber = :phoneNumber")
     Person checkPhoneNumber(long phoneNumber);
 
-    /**
-     * 修改密码
-     *
-     * @param newPassword 新密码 oldPassword 旧密码 username 用户名
-     */
+    /** 修改密码 */
     @Query("UPDATE person_table SET password = :newPassword WHERE password  = :oldPassword and username = :username")
     void changePassword(String oldPassword, String newPassword, String username);
 
-    //查询用户
-
-    /**
-     * 查询用户
-     */
+    /** 查询用户 */
     @Query("SELECT * FROM person_table WHERE username = :username")
     Person queryPerson(String username);
 
-    //查询用户的支付密码
+    /** 查询用户的支付密码 */
 
     @Query("SELECT payPassword FROM person_table WHERE username = :username")
     int queryPayPassword(String username);

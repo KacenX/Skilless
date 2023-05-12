@@ -43,10 +43,6 @@ public class StringUtil {
      * @param moneyBeforeDiscount 折扣前的金额
      * @param symbolSize          金额前￥符号大小
      * @param coupon              进行折扣的红包
-     * @return android.text.SpannableString
-     * @Author Bubu
-     * @date 2022/11/3 22:08
-     * @commit
      */
     public static SpannableString getSSMoneyAfterDiscount(double moneyBeforeDiscount, int symbolSize, Coupon coupon) {
         String moneyBefore = String.valueOf(moneyBeforeDiscount);
@@ -90,10 +86,6 @@ public class StringUtil {
      *
      * @param money      金额
      * @param symbolSize 金钱符号大小
-     * @return SpannableString
-     * @Author Bubu
-     * @date 2022/10/26 18:38
-     * @commit
      */
     public static SpannableString getSSMoney(double money, int symbolSize) {
         String moneyStr = String.valueOf(money);
@@ -112,10 +104,6 @@ public class StringUtil {
      *
      * @param list 待转换的List
      * @param div  分隔符
-     * @return String
-     * @Author Bubu
-     * @date 2022/10/26 18:40
-     * @commit
      */
     public static String join(List<String> list, String div) {
         StringBuilder s = new StringBuilder();
@@ -135,11 +123,6 @@ public class StringUtil {
 
     /**
      * 获取当前系统的日期与时间
-     *
-     * @return java.lang.String
-     * @Author Bubu
-     * @date 2022/11/3 22:10
-     * @commit
      */
     public static String getCurrentDateAndTime() {
         Calendar c = Calendar.getInstance();
@@ -155,11 +138,6 @@ public class StringUtil {
 
     /**
      * 获取当前系统日期与时间
-     *
-     * @return java.lang.String
-     * @Author Bubu
-     * @date 2022/11/3 22:11
-     * @commit
      */
     public static String getCurrentTime() {
         long currentTime = System.currentTimeMillis();
@@ -169,12 +147,6 @@ public class StringUtil {
 
     /**
      * 通过时间戳，转化为表示日期、时间的字符串
-     *
-     * @param mills 时间戳
-     * @return String
-     * @Author Bubu
-     * @date 2022/10/26 18:42
-     * @commit
      */
     @SuppressLint("SimpleDateFormat")
     public static String getCurrentTimeByMills(long mills) {

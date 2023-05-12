@@ -21,9 +21,9 @@ public interface ActivityAction {
     default Activity getActivity() {
         Context context = getContext();
         do {
-            if (context instanceof Activity) {
+            if (context instanceof Activity) {      //当前 context 为 Activity类
                 return (Activity) context;
-            } else if (context instanceof ContextWrapper) {
+            } else if (context instanceof ContextWrapper) { // context 是一个包装了另一个 Context 对象的对象
                 context = ((ContextWrapper) context).getBaseContext();
             } else {
                 return null;
@@ -32,22 +32,4 @@ public interface ActivityAction {
         return null;
     }
 
-    /**
-     * 跳转 Activity 简化版
-     */
-    default void startActivity(Class<? extends Activity> clazz) {
-        startActivity(new Intent(getContext(), clazz));
-    }
-
-    /**
-     * 跳转 Activity
-     */
-    default void startActivity(Intent intent) {
-        if (!(getContext() instanceof Activity)) {
-            // 如果当前的上下文不是 Activity，调用 startActivity 必须加入新任务栈的标记，否则会报错：android.util.AndroidRuntimeException
-            // Calling startActivity() from outside of an Activity context requires the FLAG_ACTIVITY_NEW_TASK flag. Is this really what you want?
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        getContext().startActivity(intent);
-    }
 }

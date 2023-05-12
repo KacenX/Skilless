@@ -220,8 +220,6 @@ public class DishMenuFragment extends Fragment {
                                 @Override
                                 public void onCompleted(BaseDialog dialog, String payPassword) {
                                     if (Integer.parseInt(payPassword) == user.payPassword) {
-//                                        Toast.makeText(requireActivity(), getRString(R.string.pay_success), Toast.LENGTH_SHORT).show();
-                                        //new XToast
                                         //获取MainActivity对象
                                         MainActivity mainActivity = (MainActivity) getActivity();
                                         //输出
@@ -253,7 +251,6 @@ public class DishMenuFragment extends Fragment {
                                             selectedCoupon = null;
                                         }
                                     } else {
-//                                        Toast.makeText(requireActivity(), getRString(R.string.pay_fail), Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "onPay: " + payPassword + " " + personDao.queryPayPassword(user.username));
                                         new XToast<>(requireActivity())
                                                 .setContentView(R.layout.window_hint)
@@ -314,12 +311,7 @@ public class DishMenuFragment extends Fragment {
     }
 
     /**
-     * 更新购物车已购金额、
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/14 21:03
-     * @commit
+     * 更新购物车已购金额
      */
     public void updateShoppingCarAccount() {
         double total = 0;
@@ -332,12 +324,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 设置购物车已购金额
-     *
-     * @param money 设置的金额
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/14 19:55
-     * @commit
      */
     public void setShoppingCarAccount(double money) {
         TextView totalAccount = shoppingCar.findViewById(R.id.account_in_car);
@@ -362,12 +348,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 绑定视图
-     *
-     * @param view
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/12 20:51
-     * @commit none
      */
     private void bindViews(View view) {
         stickyListView = view.findViewById(R.id.showdishes);
@@ -380,11 +360,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 初始化红包
-     *
-     * @return void
-     * @Author Anduin9527
-     * @date 2022/10/29 10:18
-     * @commit
      */
     private void redPackInit() {
         //计数器
@@ -450,11 +425,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 随机生成优惠券，并插入数据库
-     *
-     * @return String
-     * @Author Anduin9527
-     * @date 2022/10/18 20:47
-     * @commit
      */
     private String geneCoupon() {
         //随机生成优惠卷
@@ -492,12 +462,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 获取string中的属性值
-     *
-     * @param id
-     * @return String
-     * @Author Anduin9527
-     * @date 2022/10/12 8:29
-     * @commit
      */
     private String getRString(@StringRes int id) {
         return getResources().getString(id);
@@ -505,12 +469,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 测试用：初始化添加商品列表
-     *
-     * @return void
-     * @description
-     * @Author Bubu
-     * @date 2022/10/12 17:45
-     * @commit
      */
     private void initDishList() {
         Resources r = getResources();
@@ -530,11 +488,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 初始化类别列表，从商品列表中提取分类
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/13 0:51
-     * @commit
      */
     private void initCategoryItems() {
         categoryItems = null;
@@ -563,11 +516,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 显示购物车
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/12 17:45
-     * @commit
      */
     public void showShoppingCar() {
         RelativePopupWindow shoppingCar = new RelativePopupWindow(getContext());
@@ -634,11 +582,6 @@ public class DishMenuFragment extends Fragment {
 
     /**
      * 清空购物车
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/26 13:47
-     * @commit
      */
     public void clearShoppingCar() {
         Log.d(TAG, "clear the shopping car!");
@@ -655,27 +598,11 @@ public class DishMenuFragment extends Fragment {
         updateShoppingCarAccount();
     }
 
-    public ArrayList<Dish> getDishList() {
-        return dishList;
-    }
-
-    public void setDishList(ArrayList<Dish> dishList) {
-        this.dishList = dishList;
-    }
-
-    public ArrayList<UserDish> getUserDishList() {
-        return userDishList;
-    }
-
     public void setUserDishList(ArrayList<UserDish> userDishList) {
         this.userDishList = userDishList;
     }
 
     public StickyListHeadersListView getStickyListView() {
         return stickyListView;
-    }
-
-    public void setStickyListView(StickyListHeadersListView stickyListView) {
-        this.stickyListView = stickyListView;
     }
 }

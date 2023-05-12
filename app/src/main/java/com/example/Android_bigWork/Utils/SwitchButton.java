@@ -536,9 +536,6 @@ public final class SwitchButton extends View {
             out.writeInt(checked ? 1 : 0);
         }
 
-        /**
-         * fixed by Night99 https://github.com/g19980115
-         */
         @Override
         public int describeContents() {
             return 0;

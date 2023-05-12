@@ -10,17 +10,7 @@ import androidx.annotation.Nullable;
  */
 public interface ClickAction extends View.OnClickListener {
 
-    <V extends View> V findViewById(@IdRes int id);
-
-    default void setOnClickListener(@IdRes int... ids) {
-        setOnClickListener(this, ids);
-    }
-
-    default void setOnClickListener(@Nullable View.OnClickListener listener, @IdRes int... ids) {
-        for (int id : ids) {
-            findViewById(id).setOnClickListener(listener);
-        }
-    }
+    <V extends View> V findViewById(@IdRes int id);     //根据id查找View
 
     default void setOnClickListener(View... views) {
        setOnClickListener(this, views);
@@ -34,6 +24,6 @@ public interface ClickAction extends View.OnClickListener {
 
     @Override
     default void onClick(View view) {
-        // 默认不实现，让子类实现
+        // 默认不实现 子类实现
     }
 }

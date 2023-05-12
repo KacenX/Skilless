@@ -59,14 +59,6 @@ public abstract class BaseAdapter<VH extends BaseAdapter<?>.ViewHolder>
         holder.onBindView(position);
     }
 
-    /**
-     * 获取 RecyclerView 对象
-     */
-    @Nullable
-    public RecyclerView getRecyclerView() {
-        return mRecyclerView;
-    }
-
     @Override
     public Context getContext() {
         return mContext;
@@ -155,10 +147,6 @@ public abstract class BaseAdapter<VH extends BaseAdapter<?>.ViewHolder>
             }
         }
 
-        /**
-         * {@link View.OnLongClickListener}
-         */
-
         @Override
         public boolean onLongClick(View view) {
             int position = getViewHolderPosition();
@@ -232,25 +220,6 @@ public abstract class BaseAdapter<VH extends BaseAdapter<?>.ViewHolder>
             mChildClickListeners = new SparseArray<>();
         }
         mChildClickListeners.put(id, listener);
-    }
-
-    /**
-     * 设置 RecyclerView 条目长按监听
-     */
-    public void setOnItemLongClickListener(@Nullable OnItemLongClickListener listener) {
-        checkRecyclerViewState();
-        mItemLongClickListener = listener;
-    }
-
-    /**
-     * 设置 RecyclerView 条目子 View 长按监听
-     */
-    public void setOnChildLongClickListener(@IdRes int id, @Nullable OnChildLongClickListener listener) {
-        checkRecyclerViewState();
-        if (mChildLongClickListeners == null) {
-            mChildLongClickListeners = new SparseArray<>();
-        }
-        mChildLongClickListeners.put(id, listener);
     }
 
     /**

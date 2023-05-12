@@ -16,9 +16,7 @@ public abstract class CouponDatabase extends RoomDatabase {
     private static final String DB_NAME = "coupon.db";
     private static CouponDatabase INSTANCE;
 
-    /**
-     * 获取数据库实例
-     */
+    /** 获取数据库实例 */
     public static synchronized CouponDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),

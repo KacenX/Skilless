@@ -5,45 +5,21 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.annotation.StyleRes;
+import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatDialog;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
-
 import com.example.Android_bigWork.R;
-import com.example.Android_bigWork.action.ActivityAction;
-import com.example.Android_bigWork.action.AnimAction;
-import com.example.Android_bigWork.action.ClickAction;
-import com.example.Android_bigWork.action.HandlerAction;
-import com.example.Android_bigWork.action.KeyboardAction;
-import com.example.Android_bigWork.action.ResourcesAction;
+import com.example.Android_bigWork.action.*;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -53,7 +29,7 @@ import java.util.List;
  * desc   : Dialog 技术基类
  */
 public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
-        ActivityAction, ResourcesAction, HandlerAction, ClickAction, AnimAction, KeyboardAction,
+        ActivityAction, ResourcesAction, HandlerAction, ClickAction, AnimAction,
         DialogInterface.OnShowListener, DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
 
     private final ListenersWrapper<BaseDialog> mListeners = new ListenersWrapper<>(this);
@@ -66,24 +42,8 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
     @Nullable
     private List<OnDismissListener> mDismissListeners;
 
-    public BaseDialog(Context context) {
-        this(context, R.style.BaseDialogTheme);
-    }
-
     public BaseDialog(Context context, @StyleRes int themeResId) {
         super(context, themeResId);
-    }
-
-    /**
-     * 获取 Dialog 的根布局
-     */
-    public View getContentView() {
-        View contentView = findViewById(Window.ID_ANDROID_CONTENT);
-        if (contentView instanceof ViewGroup &&
-                ((ViewGroup) contentView).getChildCount() == 1) {
-            return ((ViewGroup) contentView).getChildAt(0);
-        }
-        return contentView;
     }
 
     /**
@@ -109,32 +69,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
         }
         WindowManager.LayoutParams params = window.getAttributes();
         params.height = height;
-        window.setAttributes(params);
-    }
-
-    /**
-     * 设置水平偏移
-     */
-    public void setXOffset(int offset) {
-        Window window = getWindow();
-        if (window == null) {
-            return;
-        }
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.x = offset;
-        window.setAttributes(params);
-    }
-
-    /**
-     * 设置垂直偏移
-     */
-    public void setYOffset(int offset) {
-        Window window = getWindow();
-        if (window == null) {
-            return;
-        }
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.y = offset;
         window.setAttributes(params);
     }
 
@@ -181,32 +115,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             return BaseDialog.ANIM_DEFAULT;
         }
         return window.getAttributes().windowAnimations;
-    }
-
-    /**
-     * 设置背景遮盖层开关
-     */
-    public void setBackgroundDimEnabled(boolean enabled) {
-        Window window = getWindow();
-        if (window == null) {
-            return;
-        }
-        if (enabled) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        }
-    }
-
-    /**
-     * 设置背景遮盖层的透明度（前提条件是背景遮盖层开关必须是为开启状态）
-     */
-    public void setBackgroundDimAmount(@FloatRange(from = 0.0, to = 1.0) float dimAmount) {
-        Window window = getWindow();
-        if (window == null) {
-            return;
-        }
-        window.setDimAmount(dimAmount);
     }
 
     @Override
@@ -338,18 +246,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
     }
 
     /**
-     * 移除一个取消监听器
-     *
-     * @param listener 监听器对象
-     */
-    public void removeOnCancelListener(@Nullable OnCancelListener listener) {
-        if (mCancelListeners == null) {
-            return;
-        }
-        mCancelListeners.remove(listener);
-    }
-
-    /**
      * 移除一个销毁监听器
      *
      * @param listener 监听器对象
@@ -451,116 +347,70 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
 
     @SuppressWarnings("unchecked")
     public static class Builder<B extends Builder<?>> implements
-            ActivityAction, ResourcesAction, ClickAction, KeyboardAction {
+            ActivityAction, ResourcesAction, ClickAction {
 
-        /**
-         * Activity 对象
-         */
+        /** Activity 对象 */
         private final Activity mActivity;
-        /**
-         * Context 对象
-         */
+        /** Context 对象 */
         private final Context mContext;
-        /**
-         * Dialog 对象
-         */
+        /** Dialog 对象 */
         private BaseDialog mDialog;
-        /**
-         * Dialog 布局
-         */
+        /** Dialog 布局 */
         private View mContentView;
 
-        /**
-         * 主题样式
-         */
+        /** 主题样式 */
         private int mThemeId = R.style.BaseDialogTheme;
-        /**
-         * 动画样式
-         */
+        /** 动画样式 */
         private int mAnimStyle = BaseDialog.ANIM_DEFAULT;
 
-        /**
-         * 宽度和高度
-         */
+        /** 宽度和高度 */
         private int mWidth = WindowManager.LayoutParams.WRAP_CONTENT;
         private int mHeight = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        /**
-         * 重心位置
-         */
+        /** 重心位置 */
         private int mGravity = Gravity.NO_GRAVITY;
-        /**
-         * 水平偏移
-         */
+        /** 水平偏移 */
         private int mXOffset;
-        /**
-         * 垂直偏移
-         */
+        /** 垂直偏移 */
         private int mYOffset;
 
-        /**
-         * 是否能够被取消
-         */
+        /** 是否能够被取消 */
         private boolean mCancelable = true;
-        /**
-         * 点击空白是否能够取消  前提是这个对话框可以被取消
-         */
+        /** 点击空白是否能够取消  前提是这个对话框可以被取消 */
         private boolean mCanceledOnTouchOutside = true;
 
-        /**
-         * 背景遮盖层开关
-         */
+        /** 背景遮盖层开关 */
         private boolean mBackgroundDimEnabled = true;
-        /**
-         * 背景遮盖层透明度
-         */
+        /** 背景遮盖层透明度 */
         private float mBackgroundDimAmount = 0.5f;
 
-        /**
-         * Dialog 创建监听
-         */
+        /** Dialog 创建监听 */
         private OnCreateListener mCreateListener;
-        /**
-         * Dialog 显示监听
-         */
+        /** Dialog 显示监听 */
         private final List<OnShowListener> mShowListeners = new ArrayList<>();
-        /**
-         * Dialog 取消监听
-         */
+        /** Dialog 取消监听 */
         private final List<OnCancelListener> mCancelListeners = new ArrayList<>();
-        /**
-         * Dialog 销毁监听
-         */
+        /** Dialog 销毁监听 */
         private final List<OnDismissListener> mDismissListeners = new ArrayList<>();
-        /**
-         * Dialog 按键监听
-         */
+        /** Dialog 按键监听 */
         private OnKeyListener mKeyListener;
 
-        /**
-         * 点击事件集合
-         */
+        /** 点击事件集合 */
         private SparseArray<OnClickListener<?>> mClickArray;
-
-        public Builder(Activity activity) {
-            this((Context) activity);
-        }
 
         public Builder(Context context) {
             mContext = context;
             mActivity = getActivity();
         }
 
-        /**
-         * 设置布局
-         */
+        /** 设置布局 */
         public B setContentView(@LayoutRes int id) {
-            // 这里解释一下，为什么要传 new FrameLayout，因为如果不传的话，XML 的根布局获取到的 LayoutParams 对象会为空，也就会导致宽高参数解析不出来
+            // 不传的话，XML 的根布局获取到的 LayoutParams 对象会为空，导致宽高参数解析不出来
             return setContentView(LayoutInflater.from(mContext).inflate(id, new FrameLayout(mContext), false));
         }
 
         public B setContentView(View view) {
-            // 请不要传入空的布局
+            // 不传入空的布局
             if (view == null) {
                 throw new IllegalArgumentException("are you ok?");
             }
@@ -603,29 +453,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
         }
 
         /**
-         * 设置主题 id
-         */
-        public B setThemeStyle(@StyleRes int id) {
-            mThemeId = id;
-            if (isCreated()) {
-                // Dialog 创建之后不能再设置主题 id
-                throw new IllegalStateException("are you ok?");
-            }
-            return (B) this;
-        }
-
-        /**
-         * 设置动画，已经封装好几种样式，具体可见{@link AnimAction}类
-         */
-        public B setAnimStyle(@StyleRes int id) {
-            mAnimStyle = id;
-            if (isCreated()) {
-                mDialog.setWindowAnimations(id);
-            }
-            return (B) this;
-        }
-
-        /**
          * 设置宽度
          */
         public B setWidth(int width) {
@@ -635,10 +462,10 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
                 return (B) this;
             }
 
-            // 这里解释一下为什么要重新设置 LayoutParams
-            // 因为如果不这样设置的话，第一次显示的时候会按照 Dialog 宽高显示
+            // 重新设置 LayoutParams
+            // 不这样设置的话，第一次显示的时候会按照 Dialog 宽高显示
             // 但是 Layout 内容变更之后就不会按照之前的设置宽高来显示
-            // 所以这里我们需要对 View 的 LayoutParams 也进行设置
+            // 所以这里需要对 View 的 LayoutParams 也进行设置
             ViewGroup.LayoutParams params = mContentView != null ? mContentView.getLayoutParams() : null;
             if (params != null) {
                 params.width = width;
@@ -647,9 +474,7 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             return (B) this;
         }
 
-        /**
-         * 设置高度
-         */
+        /** 设置高度 */
         public B setHeight(int height) {
             mHeight = height;
             if (isCreated()) {
@@ -657,10 +482,7 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
                 return (B) this;
             }
 
-            // 这里解释一下为什么要重新设置 LayoutParams
-            // 因为如果不这样设置的话，第一次显示的时候会按照 Dialog 宽高显示
-            // 但是 Layout 内容变更之后就不会按照之前的设置宽高来显示
-            // 所以这里我们需要对 View 的 LayoutParams 也进行设置
+            // 同上
             ViewGroup.LayoutParams params = mContentView != null ? mContentView.getLayoutParams() : null;
             if (params != null) {
                 params.height = height;
@@ -669,9 +491,7 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             return (B) this;
         }
 
-        /**
-         * 设置重心位置
-         */
+        /** 设置重心位置 */
         public B setGravity(int gravity) {
             // 适配布局反方向
             mGravity = Gravity.getAbsoluteGravity(gravity, getResources().getConfiguration().getLayoutDirection());
@@ -681,31 +501,7 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             return (B) this;
         }
 
-        /**
-         * 设置水平偏移
-         */
-        public B setXOffset(int offset) {
-            mXOffset = offset;
-            if (isCreated()) {
-                mDialog.setXOffset(offset);
-            }
-            return (B) this;
-        }
-
-        /**
-         * 设置垂直偏移
-         */
-        public B setYOffset(int offset) {
-            mYOffset = offset;
-            if (isCreated()) {
-                mDialog.setYOffset(offset);
-            }
-            return (B) this;
-        }
-
-        /**
-         * 是否可以取消
-         */
+        /** 是否可以取消 */
         public B setCancelable(boolean cancelable) {
             mCancelable = cancelable;
             if (isCreated()) {
@@ -714,79 +510,9 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             return (B) this;
         }
 
-        /**
-         * 是否可以通过点击空白区域取消
-         */
-        public B setCanceledOnTouchOutside(boolean cancel) {
-            mCanceledOnTouchOutside = cancel;
-            if (isCreated() && mCancelable) {
-                mDialog.setCanceledOnTouchOutside(cancel);
-            }
-            return (B) this;
-        }
-
-        /**
-         * 设置背景遮盖层开关
-         */
-        public B setBackgroundDimEnabled(boolean enabled) {
-            mBackgroundDimEnabled = enabled;
-            if (isCreated()) {
-                mDialog.setBackgroundDimEnabled(enabled);
-            }
-            return (B) this;
-        }
-
-        /**
-         * 设置背景遮盖层的透明度（前提条件是背景遮盖层开关必须是为开启状态）
-         */
-        public B setBackgroundDimAmount(@FloatRange(from = 0.0, to = 1.0) float dimAmount) {
-            mBackgroundDimAmount = dimAmount;
-            if (isCreated()) {
-                mDialog.setBackgroundDimAmount(dimAmount);
-            }
-            return (B) this;
-        }
-
-        /**
-         * 设置创建监听
-         */
-        public B setOnCreateListener(@NonNull OnCreateListener listener) {
-            mCreateListener = listener;
-            return (B) this;
-        }
-
-        /**
-         * 添加显示监听
-         */
+        /** 添加显示监听 */
         public B addOnShowListener(@NonNull OnShowListener listener) {
             mShowListeners.add(listener);
-            return (B) this;
-        }
-
-        /**
-         * 添加取消监听
-         */
-        public B addOnCancelListener(@NonNull OnCancelListener listener) {
-            mCancelListeners.add(listener);
-            return (B) this;
-        }
-
-        /**
-         * 添加销毁监听
-         */
-        public B addOnDismissListener(@NonNull OnDismissListener listener) {
-            mDismissListeners.add(listener);
-            return (B) this;
-        }
-
-        /**
-         * 设置按键监听
-         */
-        public B setOnKeyListener(@NonNull OnKeyListener listener) {
-            mKeyListener = listener;
-            if (isCreated()) {
-                mDialog.setOnKeyListener(listener);
-            }
             return (B) this;
         }
 
@@ -799,76 +525,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
 
         public B setText(@IdRes int id, CharSequence text) {
             ((TextView) findViewById(id)).setText(text);
-            return (B) this;
-        }
-
-        /**
-         * 设置文本颜色
-         */
-        public B setTextColor(@IdRes int id, @ColorInt int color) {
-            ((TextView) findViewById(id)).setTextColor(color);
-            return (B) this;
-        }
-
-        /**
-         * 设置提示
-         */
-        public B setHint(@IdRes int viewId, @StringRes int stringId) {
-            return setHint(viewId, getString(stringId));
-        }
-
-        public B setHint(@IdRes int id, CharSequence text) {
-            ((TextView) findViewById(id)).setHint(text);
-            return (B) this;
-        }
-
-        /**
-         * 设置可见状态
-         */
-        public B setVisibility(@IdRes int id, int visibility) {
-            findViewById(id).setVisibility(visibility);
-            return (B) this;
-        }
-
-        /**
-         * 设置背景
-         */
-        public B setBackground(@IdRes int viewId, @DrawableRes int drawableId) {
-            return setBackground(viewId, ContextCompat.getDrawable(mContext, drawableId));
-        }
-
-        public B setBackground(@IdRes int id, Drawable drawable) {
-            findViewById(id).setBackground(drawable);
-            return (B) this;
-        }
-
-        /**
-         * 设置图片
-         */
-        public B setImageDrawable(@IdRes int viewId, @DrawableRes int drawableId) {
-            return setBackground(viewId, ContextCompat.getDrawable(mContext, drawableId));
-        }
-
-        public B setImageDrawable(@IdRes int id, Drawable drawable) {
-            ((ImageView) findViewById(id)).setImageDrawable(drawable);
-            return (B) this;
-        }
-
-        /**
-         * 设置点击事件
-         */
-        public B setOnClickListener(@IdRes int id, @NonNull OnClickListener<?> listener) {
-            if (mClickArray == null) {
-                mClickArray = new SparseArray<>();
-            }
-            mClickArray.put(id, listener);
-
-            if (isCreated()) {
-                View view = mDialog.findViewById(id);
-                if (view != null) {
-                    view.setOnClickListener(new ViewClickWrapper(mDialog, listener));
-                }
-            }
             return (B) this;
         }
 
@@ -1024,17 +680,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
         }
 
         /**
-         * 延迟执行
-         */
-        public final void post(Runnable runnable) {
-            if (isShowing()) {
-                mDialog.post(runnable);
-            } else {
-                addOnShowListener(new ShowPostWrapper(runnable));
-            }
-        }
-
-        /**
          * 延迟一段时间执行
          */
         public final void postDelayed(Runnable runnable, long delayMillis) {
@@ -1043,24 +688,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             } else {
                 addOnShowListener(new ShowPostDelayedWrapper(runnable, delayMillis));
             }
-        }
-
-        /**
-         * 在指定的时间执行
-         */
-        public final void postAtTime(Runnable runnable, long uptimeMillis) {
-            if (isShowing()) {
-                mDialog.postAtTime(runnable, uptimeMillis);
-            } else {
-                addOnShowListener(new ShowPostAtTimeWrapper(runnable, uptimeMillis));
-            }
-        }
-
-        /**
-         * 获取 Dialog 的根布局
-         */
-        public View getContentView() {
-            return mContentView;
         }
 
         /**
@@ -1370,27 +997,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
     }
 
     /**
-     * post 任务包装类
-     */
-    private static final class ShowPostWrapper implements OnShowListener {
-
-        private final Runnable mRunnable;
-
-        private ShowPostWrapper(Runnable runnable) {
-            mRunnable = runnable;
-        }
-
-        @Override
-        public void onShow(BaseDialog dialog) {
-            if (mRunnable == null) {
-                return;
-            }
-            dialog.removeOnShowListener(this);
-            dialog.post(mRunnable);
-        }
-    }
-
-    /**
      * postDelayed 任务包装类
      */
     private static final class ShowPostDelayedWrapper implements OnShowListener {
@@ -1410,29 +1016,6 @@ public class BaseDialog extends AppCompatDialog implements LifecycleOwner,
             }
             dialog.removeOnShowListener(this);
             dialog.postDelayed(mRunnable, mDelayMillis);
-        }
-    }
-
-    /**
-     * postAtTime 任务包装类
-     */
-    private static final class ShowPostAtTimeWrapper implements OnShowListener {
-
-        private final Runnable mRunnable;
-        private final long mUptimeMillis;
-
-        private ShowPostAtTimeWrapper(Runnable r, long uptimeMillis) {
-            mRunnable = r;
-            mUptimeMillis = uptimeMillis;
-        }
-
-        @Override
-        public void onShow(BaseDialog dialog) {
-            if (mRunnable == null) {
-                return;
-            }
-            dialog.removeOnShowListener(this);
-            dialog.postAtTime(mRunnable, mUptimeMillis);
         }
     }
 

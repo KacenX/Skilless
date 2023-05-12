@@ -13,9 +13,7 @@ public abstract class PersonDatabase extends RoomDatabase {
     private static final String DB_NAME = "person.db";
     private static PersonDatabase INSTANCE;
 
-    /**
-     * 获取数据库实例
-     */
+    /** 获取数据库实例 */
     public static synchronized PersonDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),

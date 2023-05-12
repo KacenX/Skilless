@@ -147,11 +147,6 @@ public class OrderFragment extends Fragment {
 
     /**
      * 更新订单
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/25 21:20
-     * @commit
      */
     public void updateOrders() {
         // 获取事件戳（订单生成时间）

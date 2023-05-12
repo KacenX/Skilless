@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = initIntent.getExtras();
             //获取Bundle中的数据
             user = (Person) bundle.getSerializable("user");
-            //判断是否有传入的用户数据
-//            Toast.makeText(this, R.string.welcome + user.username, Toast.LENGTH_SHORT).show();
         }
 
 
@@ -87,12 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 初始化fragment，并向其中传递user信息
-     *
-     * @param
-     * @return
-     * @Author Anduin9527
-     * @date 2022/10/16 11:39
-     * @commit
      */
     private void initFragmentArrayList() {
 
@@ -116,11 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 初始化底部导航按钮
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/4 23:10
-     * @commit
      */
     private void initBottomNavigationBar() {
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottomNavigationBar);
@@ -163,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 int width = bottomNavigationBar.getMeasuredWidth();
                 int height = bottomNavigationBar.getMeasuredHeight();
                 Log.d(TAG, "onLayoutChange: BottomNavigationBar (width,height)=(" + width + "," + height + ")");
-//                ((DishMenuFragment)fragmentArrayList.get(0)).setBottomNavigationBarHeight(height);
 
             }
         });

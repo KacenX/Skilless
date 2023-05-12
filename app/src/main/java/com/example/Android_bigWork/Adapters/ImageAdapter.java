@@ -40,15 +40,8 @@ public class ImageAdapter extends BannerAdapter<Dish,ImageAdapter.BannerViewHold
         itemView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
-        // itemView.findViewById(R.id.imageView8)
         BannerViewHolder holder=new BannerViewHolder(itemView);
         ImageView imageView=new ImageView(parent.getContext());
-        // 根据viewpager2强制要求，设置为匹配父元素
-//        imageView.setLayoutParams(new ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        return new BannerViewHolder(imageView);
         return holder;
     }
 

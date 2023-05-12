@@ -132,7 +132,6 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
         // 在视图上设置文本、图片
         Dish dish = dishList.get(position);
         holder.name.setText(dish.getName());
-//        holder.price.setText(String.valueOf(dish.getPrice()));
         holder.price.setText(StringUtil.getSSMoney(dish.getPrice(), 54));
         holder.count.setText(String.valueOf(dish.getCount()));
         holder.img.setImageResource(resources.getIdentifier("dish_" + dish.getGID(), "drawable", "com.example.Android_bigWork"));
@@ -145,8 +144,6 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
             if (dish.getCount() == 1) {
                 // 数据层-1
                 dish.setCount(dish.getCount() - 1);
-                // 视图层-1
-//                TextView count_sub = contentView.findViewById(R.id.dish_count);
                 holder.count.setText(String.valueOf(dish.getCount()));
                 // 从购物车中移除
                 removeSingleDishFromShoppingCar(dish);
@@ -175,8 +172,6 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         // 取得焦点
         dishDetail.setFocusable(true);
-        //注意：要是点击外部空白处弹框消息  那么必须给弹框设置一个背景色  不然是不起作用的
-//        dishDetail.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         //点击外部消失
         dishDetail.setOutsideTouchable(true);
         //设置可以点击
@@ -288,8 +283,8 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
             Log.d(TAG, "showDishDetail: add clicked");
             // 将自定义口味拼接为一个字符串
             ArrayList<String> customList=new ArrayList<>();
-            if(spicy[0]>0 ){
-                if(!Objects.equals(spicyStr[0], getRString(R.string.defaultValue))){
+            if(spicy[0] > 0) {
+                if(!Objects.equals(spicyStr[0], getRString(R.string.defaultValue))) {
                     customList.add(spicyStr[0]);
                     Log.d(TAG, "add value: "+spicyStr[0]);
 
@@ -298,7 +293,7 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
                     Log.d(TAG, "add default: ");
                 }
             }
-            if(sweet[0]>0 ){
+            if(sweet[0] > 0){
                 if(!Objects.equals(sweetStr[0], getRString(R.string.defaultValue))){
                     customList.add(sweetStr[0]);
                     Log.d(TAG, "add value: "+sweetStr[0]);
@@ -313,7 +308,6 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
             // 数据层上，将菜加入购物车
             addDishToShoppingCar(dish, spicy[0], sweet[0], customText);
             dish.setCount(dish.getCount() + 1);
-//            TextView count_add = contentView.findViewById(R.id.dish_count);
             count.setText(String.valueOf(dish.getCount()));
             dishMenuFragment.updateShoppingCarAccount();
             notifyDataSetChanged();
@@ -330,8 +324,6 @@ public class FoodStickyAdapter extends BaseAdapter implements StickyListHeadersA
             if (dish.getCount() == 1) {
                 // 数据层-1
                 dish.setCount(dish.getCount() - 1);
-                // 视图层-1
-//                TextView count_sub = contentView.findViewById(R.id.dish_count);
                 count.setText(String.valueOf(dish.getCount()));
                 // 从购物车中移除
                 removeSingleDishFromShoppingCar(dish);
