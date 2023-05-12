@@ -98,10 +98,6 @@ public class DishMenuFragment extends Fragment {
     private CouponDao couponDao;
     private Person user;//MainActivity中的用户信息
 
-    public static DishMenuFragment newInstance() {
-        return new DishMenuFragment();
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //获取到fragment的管理对象
         fragmentManager = getSupportFragmentManager();
-        // init FragmentArrayList
+        // 初始化Fragment、传递User信息
         initFragmentArrayList();
 
-        // init BottomNavigationBar
+        // 初始化导航栏
         initBottomNavigationBar();
 
-        // init FragmentTransaction and select the first fragment to show
+        // 初始化界面
         initFragmentTransaction();
 
         //隐藏标题栏
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(fragmentArrayList.get(i));
         }
         fragmentTransaction.show(fragmentArrayList.get(0));
-        // commit FragmentTransaction to apply changes
+        // 提交修改
         fragmentTransaction.commit();
     }
 
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", user);
 
-        DishMenuFragment dishMenuFragment = new DishMenuFragment();
-        dishMenuFragment.setArguments(bundle);
+        DishMenuFragment dishMenuFragment = new DishMenuFragment();     //初始化
+        dishMenuFragment.setArguments(bundle);                          //存储参数用于界面
         fragmentArrayList.add(dishMenuFragment);
 
         OrderFragment orderFragment = new OrderFragment();

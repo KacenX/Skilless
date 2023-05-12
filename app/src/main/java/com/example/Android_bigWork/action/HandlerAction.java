@@ -11,13 +11,6 @@ public interface HandlerAction {
 
     Handler HANDLER = new Handler(Looper.getMainLooper());
 
-/**
- * 延迟执行
- */
-    default boolean post(Runnable runnable) {
-        return postDelayed(runnable, 0);
-    }   //延迟
-
     /**
      * 延迟一段时间执行
      */
