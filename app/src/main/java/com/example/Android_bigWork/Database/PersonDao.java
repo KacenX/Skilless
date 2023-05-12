@@ -30,10 +30,6 @@ public interface PersonDao {
      * 登录检测（使用电话号码和密码的组合）
      *
      * @param phoneNumber 电话号码 password 密码
-     * @return
-     * @Author Anduin9527
-     * @date 2022/10/12 9:15
-     * @commit
      */
     @Query("SELECT * FROM person_table WHERE phoneNumber = :phoneNumber and password = :password ")
     Person checkLoginByPhoneNumber(long phoneNumber, String password);
@@ -42,10 +38,6 @@ public interface PersonDao {
      * 检测用户名是否存在
      *
      * @param username 用户名
-     * @return Query
-     * @Author Anduin9527
-     * @date 2022/10/12 9:14
-     * @commit
      */
     @Query("SELECT * FROM person_table WHERE username = :username")
     Person checkUsername(String username);
@@ -54,10 +46,6 @@ public interface PersonDao {
      * 检测电话号码是否存在
      *
      * @param phoneNumber 电话号码
-     * @return Query
-     * @Author Anduin9527
-     * @date 2022/10/12 9:14
-     * @commit
      */
     @Query("SELECT * FROM person_table WHERE phoneNumber = :phoneNumber")
     Person checkPhoneNumber(long phoneNumber);
@@ -66,10 +54,6 @@ public interface PersonDao {
      * 修改密码
      *
      * @param newPassword 新密码 oldPassword 旧密码 username 用户名
-     * @return Update
-     * @Author Anduin9527
-     * @date 2022/10/12 9:14
-     * @commit
      */
     @Query("UPDATE person_table SET password = :newPassword WHERE password  = :oldPassword and username = :username")
     void changePassword(String oldPassword, String newPassword, String username);
@@ -78,12 +62,6 @@ public interface PersonDao {
 
     /**
      * 查询用户
-     *
-     * @param username
-     * @return
-     * @Author Anduin9527
-     * @date 2022/10/12 13:34
-     * @commit
      */
     @Query("SELECT * FROM person_table WHERE username = :username")
     Person queryPerson(String username);
