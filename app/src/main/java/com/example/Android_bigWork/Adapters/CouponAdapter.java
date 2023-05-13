@@ -9,13 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.Android_bigWork.Entity.Coupon;
 import com.example.Android_bigWork.R;
-import com.example.Android_bigWork.Utils.StringUtil;
 
 import java.util.List;
 import java.util.Locale;

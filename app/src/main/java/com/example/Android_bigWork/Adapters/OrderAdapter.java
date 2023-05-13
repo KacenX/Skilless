@@ -2,28 +2,21 @@ package com.example.Android_bigWork.Adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.DataSetObserver;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.Android_bigWork.Entity.UserDish;
 import com.example.Android_bigWork.R;
-import com.example.Android_bigWork.Utils.BaseDialog;
 import com.example.Android_bigWork.Utils.StringUtil;
 import com.example.Android_bigWork.ViewModels.OrderViewModel;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 import java.util.List;
-
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
  * @Desc 订单栏适配器

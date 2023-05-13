@@ -24,7 +24,7 @@ import com.example.Android_bigWork.Utils.SwitchButton;
 import com.hjq.xtoast.XToast;
 
 /**
- * @Desc 注册界面
+ 注册界面
  */
 public class SignUpActivity extends AppCompatActivity
         implements HandlerAction {
@@ -86,8 +86,7 @@ public class SignUpActivity extends AppCompatActivity
                                     personDao.insert(person);
                                     mSignUpButton.showSucceed();
                                     Log.d(TAG, "onSignUp: " + person.toString());
-//                                    Toast.makeText(SignUpActivity.this, getRString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                                    //使用HandlerAction接口的PostDelayed方法实现延时跳转
+                                   //使用HandlerAction接口的PostDelayed方法实现延时跳转
                                     postDelayed(() -> {
                                         //构建Bundle对象传递person
                                         Bundle bundle = new Bundle();

@@ -61,7 +61,6 @@ public class ImageAdapter extends BannerAdapter<Dish,ImageAdapter.BannerViewHold
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
             this.img =itemView.findViewById(R.id.imageView7);
-//            img.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             this.name=itemView.findViewById(R.id.dish_name);
             this.desc=itemView.findViewById(R.id.dish_desc);
 

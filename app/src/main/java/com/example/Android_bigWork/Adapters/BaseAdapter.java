@@ -212,17 +212,6 @@ public abstract class BaseAdapter<VH extends BaseAdapter<?>.ViewHolder>
     }
 
     /**
-     * 设置 RecyclerView 条目子 View 点击监听
-     */
-    public void setOnChildClickListener(@IdRes int id, @Nullable OnChildClickListener listener) {
-        checkRecyclerViewState();
-        if (mChildClickListeners == null) {
-            mChildClickListeners = new SparseArray<>();
-        }
-        mChildClickListeners.put(id, listener);
-    }
-
-    /**
      * 检查 RecyclerView 状态
      */
     private void checkRecyclerViewState() {

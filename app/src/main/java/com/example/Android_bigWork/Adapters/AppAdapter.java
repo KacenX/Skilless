@@ -19,10 +19,7 @@ public abstract class AppAdapter<T> extends BaseAdapter<BaseAdapter<?>.ViewHolde
 
     /** 列表数据 */
     private List<T> mDataSet;
-    /** 当前列表的页码，默认为第一页，用于分页加载功能 */
-    private int mPageNumber = 1;
-    /** 是否是最后一页，默认为false，用于分页加载功能 */
-    private boolean mLastPage;
+
     /** 标记对象 */
     private Object mTag;
 

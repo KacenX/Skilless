@@ -1,37 +1,22 @@
 package com.example.Android_bigWork.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewStub;
-import android.view.animation.Animation;
+import android.view.*;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-
+import android.widget.*;
 import androidx.cardview.widget.CardView;
-
 import com.example.Android_bigWork.Entity.Dish;
 import com.example.Android_bigWork.Entity.UserDish;
 import com.example.Android_bigWork.Fragments.DishMenuFragment;
 import com.example.Android_bigWork.R;
 import com.example.Android_bigWork.Utils.StringUtil;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
  * @Desc 用于菜品显示的适配器

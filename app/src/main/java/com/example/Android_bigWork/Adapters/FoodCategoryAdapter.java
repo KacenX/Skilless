@@ -1,19 +1,15 @@
 package com.example.Android_bigWork.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.Android_bigWork.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 /**
  * @Desc 菜品类别适配器
  */
@@ -109,12 +105,6 @@ public class FoodCategoryAdapter extends BaseAdapter {
 
         public void setCID(int CID) {
             this.CID = CID;
-        }
-
-        public CategoryItem(String categoryName,int CID, int categoryCount) {
-            this.categoryName = categoryName;
-            this.CID=CID;
-            this.categoryCount = categoryCount;
         }
 
         public String getCategoryName() {

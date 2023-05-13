@@ -27,10 +27,6 @@ public class SettingFragment extends Fragment {
     private SettingViewModel mViewModel;
     private Person user;
 
-    public static SettingFragment newInstance() {
-        return new SettingFragment();
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

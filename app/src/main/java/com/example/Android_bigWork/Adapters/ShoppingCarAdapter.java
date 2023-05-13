@@ -9,16 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.Android_bigWork.Entity.Dish;
 import com.example.Android_bigWork.Entity.UserDish;
 import com.example.Android_bigWork.Fragments.DishMenuFragment;
 import com.example.Android_bigWork.R;
 
-import java.security.AlgorithmConstraints;
 import java.util.ArrayList;
 
 
@@ -117,7 +114,6 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             hd.count.setText(String.valueOf(userDish.getCount()));
             hd.customText.setText(userDish.getCustomText());
             hd.img.setImageResource(resources.getIdentifier("dish_" + userDish.getGID(), "drawable", "com.example.Android_bigWork"));
-//        Log.d(TAG, "onBindViewHolder: " + position + "--userDish:" + userDish.getName());
         }
     }
 
@@ -142,11 +138,6 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     /**
      * 遍历购物车，更新购物车金额
-     *
-     * @return void
-     * @Author Bubu
-     * @date 2022/10/14 21:34
-     * @commit
      */
     private void updateShoppingCarAccount(){
         double total=0;

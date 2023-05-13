@@ -43,18 +43,17 @@ public class LoadingActivity extends AppCompatActivity
         //获取数据库
         DishDatabase dishDatabase = DishDatabase.getDatabase(this);
         DishDao dishDao = dishDatabase.getDishDao();
-        PersonDatabase personDatabase = PersonDatabase.getDatabase(this);
         //检测数据库是否为空
         if (dishDao.getDishCount() == 0) {
             //初始化数据库
             initDishDatabase(dishDao);
         }
-        //延迟2400ms跳转到登录界面
+        //延迟2200ms跳转到登录界面
         postDelayed(() -> {
             Intent intent = new Intent(this, LoginActivity.class).
                     setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }, 2400);
+        }, 2200);
         Log.d(TAG, "onCreate: " + StringUtil.getCurrentDateAndTime());
         Log.d(TAG, "onCreate: " + StringUtil.getCurrentTime());
     }
